@@ -1,6 +1,6 @@
 # 🤖 AI Resume & JD Analyzer
 
-> An LLM-powered REST API built with **FastAPI** and **OpenAI GPT-4o-mini** that analyzes a candidate's resume against a job description and returns structured, actionable insights.
+> An LLM-powered REST API built with **FastAPI** and **GROQ openai/gpt-oss-120b** that analyzes a candidate's resume against a job description and returns structured, actionable insights.
 
 ---
 
@@ -22,7 +22,7 @@ Paste a resume and a job description → get back:
 | Layer | Technology |
 |---|---|
 | API Framework | FastAPI |
-| LLM | OpenAI GPT-4o-mini (structured JSON output) |
+| LLM | Groq openai/gpt-oss-120b (structured JSON output) |
 | Data Validation | Pydantic v2 |
 | Server | Uvicorn (ASGI) |
 | Frontend | Vanilla JS + HTML/CSS (served by FastAPI) |
@@ -60,7 +60,7 @@ cp .env.example .env
 ```
 
 ```
-OPENAI_API_KEY=sk-...
+GROQ_API_KEY=sk-...
 ```
 
 ### 5. Run the server
@@ -124,7 +124,7 @@ resume-analyzer-api/
 ├── app/
 │   ├── main.py          # FastAPI app & routing setup
 │   ├── models.py        # Pydantic request/response schemas
-│   ├── services.py      # OpenAI API integration & prompt logic
+│   ├── services.py      # GROQ API integration & prompt logic
 │   └── routers/
 │       └── analyze.py   # /api/analyze endpoint
 ├── static/
@@ -140,7 +140,7 @@ resume-analyzer-api/
 
 ## 💡 Key Engineering Decisions
 
-- **Structured JSON output mode** (`response_format: json_object`) from OpenAI ensures the API always returns valid, parseable JSON — no regex or fragile parsing needed.
+- **Structured JSON output mode** (`response_format: json_object`) from GROQ ensures the API always returns valid, parseable JSON — no regex or fragile parsing needed.
 - **Pydantic v2 models** enforce type safety on both input validation and output serialization automatically.
 - **Separation of concerns**: routing, business logic (services), and data models are split into separate modules, making it easy to swap the LLM provider or add new endpoints.
 
